@@ -529,10 +529,10 @@ export default function Home() {
                   onChange={(e) => setVehicleType(e.target.value)}
                   className="flex-1 p-5 text-sm bg-white/5 border border-white/10 rounded-full text-white focus:outline-none focus:border-brand transition-all appearance-none cursor-pointer uppercase tracking-widest font-bold"
                 >
-                  <option value="">Select Vehicle Type...</option>
-                  <option value="Agriculture">Tractor / Agriculture</option>
-                  <option value="Commercial">Truck / Commercial</option>
-                  <option value="Light Commercial">LCV / Light Commercial</option>
+                  <option value="" className="bg-black text-white">Select Vehicle Type...</option>
+                  <option value="Agriculture" className="bg-black text-white">Tractor / Agriculture</option>
+                  <option value="Commercial" className="bg-black text-white">Truck / Commercial</option>
+                  <option value="Light Commercial" className="bg-black text-white">LCV / Light Commercial</option>
                 </select>
                 <button
                   type="submit"
