@@ -14,7 +14,7 @@ function ImageWithSkeleton({ src, alt, className }) {
     <div className="relative w-full h-full">
       {/* Shimmer skeleton while loading */}
       {!loaded && (
-        <div className="absolute inset-0 shimmer rounded-none" />
+        <div className="absolute inset-0 shimmer-light rounded-none" />
       )}
       <img
         src={error ? fallback : src}
