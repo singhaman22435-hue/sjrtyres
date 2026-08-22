@@ -1,0 +1,226 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-surface-dark: #080808;
+    --color-surface-card: #111111;
+    --color-surface-light: #1a1a1a;
+    --color-brand-default: #ef4444;
+    --color-brand-dark: #b91c1c;
+    --color-brand-light: #fca5a5;
+    --color-text-primary: #f8fafc;
+    --color-text-secondary: #94a3b8;
+    --color-text-inverse: #0f172a;
+    --ease-smooth: cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+    --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    scrollbar-gutter: stable;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  body {
+    @apply text-text-primary font-body min-h-screen;
+    background-color: #080808;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading text-text-primary tracking-tight;
+  }
+
+  img {
+    image-rendering: auto;
+  }
+}
+
+/* ─── GPU Compositing Layer ──────────────────────────────────────── */
+.gpu-layer {
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* ─── GPU-accelerated Marquee ────────────────────────────────────── */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  display: flex;
+  animation: marquee 28s linear infinite;
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* ─── Spin (GPU composited rotate) ──────────────────────────────── */
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* ─── Float animation (CSS, GPU-composited) ──────────────────────── */
+@keyframes floatY {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-14px); }
+}
+
+
+.animate-float {
+  animation: floatY 6s ease-in-out infinite;
+  will-change: transform;
+}
+
+/* ─── Particle float (replaces Framer Motion infinite loops) ─────── */
+@keyframes particleFloat {
+  0%, 100% { transform: translateY(0px) translateX(0px); }
+  33%       { transform: translateY(-28px) translateX(8px); }
+  66%       { transform: translateY(-12px) translateX(-6px); }
+}
+
+/* ─── Slow pulse glow (replaces Framer Motion scale+opacity loop) ── */
+@keyframes pulseSlow {
+  0%, 100% { opacity: 0.6; transform: scale(1); }
+  50%       { opacity: 1;   transform: scale(1.05); }
+}
+
+.animate-pulse-slow {
+  animation: pulseSlow 3s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+/* ─── Slide-up entrance ──────────────────────────────────────────── */
+@keyframes slideUpFade {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.animate-slide-up {
+  animation: slideUpFade 0.6s var(--ease-smooth) both;
+}
+
+/* ─── Staggered children entrance ───────────────────────────────── */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(24px) scale(0.98); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.stagger-children > * {
+  opacity: 0;
+  animation: fadeInUp 0.55s var(--ease-smooth) both;
+}
+.stagger-children > *:nth-child(1) { animation-delay: 0.05s; }
+.stagger-children > *:nth-child(2) { animation-delay: 0.12s; }
+.stagger-children > *:nth-child(3) { animation-delay: 0.19s; }
+.stagger-children > *:nth-child(4) { animation-delay: 0.26s; }
+.stagger-children > *:nth-child(5) { animation-delay: 0.33s; }
+.stagger-children > *:nth-child(6) { animation-delay: 0.40s; }
+
+/* ─── Pulsing brand glow ─────────────────────────────────────────── */
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 20px rgba(239,68,68,0.3), 0 0 40px rgba(239,68,68,0.1); }
+  50%       { box-shadow: 0 0 40px rgba(239,68,68,0.6), 0 0 80px rgba(239,68,68,0.2); }
+}
+
+.pulse-glow {
+  animation: pulseGlow 2.5s ease-in-out infinite;
+}
+
+/* ─── Shimmer loading state ──────────────────────────────────────── */
+@keyframes shimmer {
+  from { background-position: -200% center; }
+  to   { background-position: 200% center; }
+}
+
+.shimmer {
+  background: linear-gradient(90deg, #1a1a1a 25%, #2a2a2a 50%, #1a1a1a 75%);
+  background-size: 200% auto;
+  animation: shimmer 1.5s linear infinite;
+}
+
+/* ─── 3D Card Tilt utilities ─────────────────────────────────────── */
+.perspective-800 { perspective: 800px; }
+.preserve-3d { transform-style: preserve-3d; }
+.tilt-card {
+  transition: transform 0.4s var(--ease-smooth), box-shadow 0.4s ease;
+  will-change: transform;
+}
+.tilt-card:hover {
+  box-shadow: 0 32px 64px rgba(0,0,0,0.5), 0 0 0 1px rgba(239,68,68,0.15);
+}
+
+/* ─── Scrollbar ──────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #2a2a2a; border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: #ef4444; }
+
+/* ─── Scroll Progress Bar ────────────────────────────────────────── */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #ef4444, #f97316);
+  z-index: 9999;
+  transform-origin: left;
+  animation: scroll-track linear;
+  animation-timeline: scroll();
+  will-change: transform;
+}
+
+@keyframes scroll-track {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+
+/* ─── Text utilities ─────────────────────────────────────────────── */
+@layer utilities {
+  .text-stroke-brand {
+    -webkit-text-stroke: 1.5px var(--color-brand-default);
+    color: transparent;
+  }
+  .text-gradient-brand {
+    background: linear-gradient(135deg, #ef4444 0%, #f97316 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .glass-card {
+    background: rgba(255,255,255,0.03);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255,255,255,0.07);
+  }
+  .glass-nav {
+    background: rgba(8, 8, 8, 0.75);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .glow-brand {
+    box-shadow: 0 0 30px rgba(239,68,68,0.25), 0 0 60px rgba(239,68,68,0.1);
+  }
+  .glow-brand-hover:hover {
+    box-shadow: 0 0 40px rgba(239,68,68,0.45), 0 0 80px rgba(239,68,68,0.2);
+    transition: box-shadow 0.3s ease;
+  }
+}
