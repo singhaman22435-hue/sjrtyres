@@ -1,0 +1,27 @@
+services:
+  # Backend Web Service
+  - type: web
+    name: sjr-backend
+    env: python
+    buildCommand: "cd backend && pip install -r requirements.txt"
+    startCommand: "cd backend && gunicorn app:app"
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.10.0
+      - key: SECRET_KEY
+        generateValue: true
+      - key: DATABASE_URL
+        value: "postgresql://postgres:postgres@localhost:5432/sjr_tyres" # User needs to replace with actual production DB if using Neon etc.
+        
+  # Frontend Static Site
+  - type: web
+    name: sjr-frontend
+    env: static
+    buildCommand: "cd frontend && npm install && npm run build"
+    staticPublishPath: "./frontend/dist"
+    envVars:
+      - key: VITE_API_URL
+        fromService:
+          type: web
+          name: sjr-backend
+          envVarKey: RENDER_EXTERNAL_URL
