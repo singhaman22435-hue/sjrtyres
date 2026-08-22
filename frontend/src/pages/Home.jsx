@@ -495,6 +495,7 @@ export default function Home() {
       <div className="w-full bg-brand py-5 overflow-hidden flex whitespace-nowrap border-y border-red-700">
         <div
           className="flex gap-14 items-center text-white font-black text-sm uppercase tracking-[0.3em] animate-marquee"
+          style={{ animationDuration: '400s' }}
         >
           {Array(12).fill(["TATA MOTORS", "ASHOK LEYLAND", "JOHN DEERE", "EICHER", "MAHINDRA", "ESCORTS", "NEW HOLLAND", "VOLVO"]).flat().map((p, i) => (
             <span key={i} className="flex items-center gap-14">
