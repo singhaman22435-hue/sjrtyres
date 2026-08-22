@@ -53,7 +53,7 @@ export default function Navbar() {
           {/* Logo */}
           <Link to="/" className="flex-shrink-0">
             <img
-              src="/logo.png"
+              src="/logo.webp"
               alt="SJR Tyres"
               className={`w-auto object-contain brightness-0 invert transition-all duration-500 ${isScrolled ? 'h-8' : 'h-10'}`}
             />

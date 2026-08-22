@@ -8,25 +8,25 @@ export const siteData = {
       id: 1,
       title: "Agriculture Tyres",
       description: "Heavy-duty tyres designed to maximize traction and reduce soil compaction for farming operations.",
-      imageUrl: "/tyre images/New folder (2)/75016 BALWAAN PLUS/4K0A4435.JPG"
+      imageUrl: "/tyre images/New folder (2)/75016 BALWAAN PLUS/4K0A4435.webp"
     },
     {
       id: 2,
       title: "Commercial Tyres",
       description: "Durable tyres built for long hauls, offering superior mileage and fuel efficiency for truck fleets.",
-      imageUrl: "/tyre images/New folder (2)/900.16 B SL 91/4K0A4431.JPG"
+      imageUrl: "/tyre images/New folder (2)/900.16 B SL 91/4K0A4431.webp"
     },
     {
       id: 3,
       title: "OTR Tyres",
       description: "Off-the-road tyres engineered to withstand extreme conditions in mining and construction.",
-      imageUrl: "/tyre images/New folder (2)/400 8 ARYA 9100/4K0A4403.JPG"
+      imageUrl: "/tyre images/New folder (2)/400 8 ARYA 9100/4K0A4403.webp"
     },
     {
       id: 4,
       title: "Two/Three Wheeler",
       description: "High-performance tyres providing exceptional grip and stability for urban and cross-country riding.",
-      imageUrl: "/tyre images/New folder (2)/317 SMP TT/4K0A4231.JPG"
+      imageUrl: "/tyre images/New folder (2)/317 SMP TT/4K0A4231.webp"
     }
   ],
   features: [

@@ -26,7 +26,7 @@ export default function About() {
       <section className="relative pt-36 pb-28 px-4 overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img
-            src="/tyre images/New folder (2)/900.16 B SL 91/4K0A4431.JPG"
+            src="/tyre images/New folder (2)/900.16 B SL 91/4K0A4431.webp"
             alt="SJR Factory"
             className="w-full h-full object-contain opacity-8"
             style={{ mixBlendMode: 'luminosity' }}
@@ -76,7 +76,7 @@ export default function About() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeLeft} className="relative">
               <div className="relative rounded-3xl overflow-hidden border border-white/8 aspect-[4/3] bg-white flex items-center justify-center">
-                <img loading="lazy" src="/tyre images/New folder (2)/75016 BALWAAN PLUS/4K0A4435.JPG" alt="SJR Manufacturing" className="w-full h-full object-contain p-6" />
+                <img loading="lazy" src="/tyre images/New folder (2)/75016 BALWAAN PLUS/4K0A4435.webp" alt="SJR Manufacturing" className="w-full h-full object-contain p-6" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
                 <div className="absolute bottom-5 left-5 right-5">
                   <div className="bg-black/70 backdrop-blur-xl border border-white/10 rounded-2xl px-5 py-3 inline-block">
@@ -185,12 +185,12 @@ export default function About() {
           </motion.div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {[
-              { title: "Agriculture Tyres", sub: "Tractor Front & Rear", image: "/tyre images/New folder (2)/75016 BALWAAN PLUS/4K0A4435.JPG", desc: "Designed to maximize traction and minimize soil compaction for farming operations worldwide.", color: "#22c55e", tag: "Agri" },
-              { title: "Commercial Tyres", sub: "Truck, Bus & LCV", image: "/tyre images/New folder (2)/900.16 B SL 91/4K0A4431.JPG", desc: "High-mileage, fuel-efficient tyres built for the demands of long-haul commercial transport.", color: "#f97316", tag: "Commercial" },
-              { title: "OTR Tyres", sub: "Mining & Construction", image: "/tyre images/New folder (2)/400 8 ARYA 9100/4K0A4403.JPG", desc: "Off-the-road tyres engineered to withstand extreme loads, cuts, and punishing terrains.", color: "#a855f7", tag: "OTR" },
-              { title: "Two / Three Wheeler", sub: "Motorcycle & Scooter", image: "/tyre images/New folder (2)/317 SMP TT/4K0A4231.JPG", desc: "Precision-balanced tyres for superior grip and stability on urban roads and highways.", color: "#3b82f6", tag: "2W/3W" },
-              { title: "Specialty Tyres", sub: "Industrial & Equipment", image: "/tyre images/New folder (2)/400 8 RIDER X/4K0A4407.JPG", desc: "Custom-designed tyres for forklifts, material handling, and industrial machinery.", color: "#eab308", tag: "Industrial" },
-              { title: "Custom OEM Solutions", sub: "Made-to-Order", image: "/tyre images/New folder (2)/600.16 R PLUS/4K0A4426.JPG", desc: "R&D-backed custom tread designs and rubber compounds for OEM and enterprise clients.", color: "#ef4444", tag: "OEM" },
+              { title: "Agriculture Tyres", sub: "Tractor Front & Rear", image: "/tyre images/New folder (2)/75016 BALWAAN PLUS/4K0A4435.webp", desc: "Designed to maximize traction and minimize soil compaction for farming operations worldwide.", color: "#22c55e", tag: "Agri" },
+              { title: "Commercial Tyres", sub: "Truck, Bus & LCV", image: "/tyre images/New folder (2)/900.16 B SL 91/4K0A4431.webp", desc: "High-mileage, fuel-efficient tyres built for the demands of long-haul commercial transport.", color: "#f97316", tag: "Commercial" },
+              { title: "OTR Tyres", sub: "Mining & Construction", image: "/tyre images/New folder (2)/400 8 ARYA 9100/4K0A4403.webp", desc: "Off-the-road tyres engineered to withstand extreme loads, cuts, and punishing terrains.", color: "#a855f7", tag: "OTR" },
+              { title: "Two / Three Wheeler", sub: "Motorcycle & Scooter", image: "/tyre images/New folder (2)/317 SMP TT/4K0A4231.webp", desc: "Precision-balanced tyres for superior grip and stability on urban roads and highways.", color: "#3b82f6", tag: "2W/3W" },
+              { title: "Specialty Tyres", sub: "Industrial & Equipment", image: "/tyre images/New folder (2)/400 8 RIDER X/4K0A4407.webp", desc: "Custom-designed tyres for forklifts, material handling, and industrial machinery.", color: "#eab308", tag: "Industrial" },
+              { title: "Custom OEM Solutions", sub: "Made-to-Order", image: "/tyre images/New folder (2)/600.16 R PLUS/4K0A4426.webp", desc: "R&D-backed custom tread designs and rubber compounds for OEM and enterprise clients.", color: "#ef4444", tag: "OEM" },
             ].map((item, i) => (
               <motion.div key={i} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.06 }} className="group bg-white/[0.03] border border-white/8 rounded-3xl overflow-hidden hover:border-white/15 hover:-translate-y-1 transition-all duration-300">
                 <div className="relative h-44 bg-white flex items-center justify-center p-4 overflow-hidden">

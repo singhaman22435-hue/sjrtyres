@@ -154,7 +154,7 @@ function TyreCrossSectionArt({ activeLayer }) {
 // ─── Hero Slides ───────────────────────────────────────────────────────────────
 const heroSlides = [
   {
-    image: "/tyre images/New folder (2)/900.16 B SL 91/4K0A4431.JPG",
+    image: "/tyre images/New folder (2)/900.16 B SL 91/4K0A4431.webp",
     label: "Commercial Grade",
     category: "Truck & Bus",
     model: "900.16 B SL 91",
@@ -163,7 +163,7 @@ const heroSlides = [
     accent: "from-orange-500 to-red-600",
   },
   {
-    image: "/tyre images/New folder (2)/75016 BALWAAN PLUS/4K0A4435.JPG",
+    image: "/tyre images/New folder (2)/75016 BALWAAN PLUS/4K0A4435.webp",
     label: "Agricultural Series",
     category: "Tractor Front",
     model: "750/16 Balwaan Plus",
@@ -172,7 +172,7 @@ const heroSlides = [
     accent: "from-green-500 to-emerald-600",
   },
   {
-    image: "/tyre images/New folder (2)/600.16 R PLUS/4K0A4428.JPG",
+    image: "/tyre images/New folder (2)/600.16 R PLUS/4K0A4428.webp",
     label: "Farm Ready",
     category: "Tractor Rear",
     model: "600/16 R Plus",
@@ -181,7 +181,7 @@ const heroSlides = [
     accent: "from-yellow-500 to-orange-600",
   },
   {
-    image: "/tyre images/New folder (2)/317 SMP TT/4K0A4231.JPG",
+    image: "/tyre images/New folder (2)/317 SMP TT/4K0A4231.webp",
     label: "Urban Mobility",
     category: "Two Wheeler",
     model: "317 SMP TT",
@@ -190,7 +190,7 @@ const heroSlides = [
     accent: "from-blue-500 to-cyan-600",
   },
   {
-    image: "/tyre images/New folder (2)/400 8 ARYA 9100/4K0A4403.JPG",
+    image: "/tyre images/New folder (2)/400 8 ARYA 9100/4K0A4403.webp",
     label: "All Terrain",
     category: "OTR & Mining",
     model: "400/8 Arya 9100",
@@ -827,7 +827,7 @@ export default function Home() {
                 {/* Top-left */}
                 <div className="relative rounded-2xl overflow-hidden group">
                   <img
-                    src="/tyre images/New folder (2)/900.16 B SL 91/4K0A4431.JPG"
+                    src="/tyre images/New folder (2)/900.16 B SL 91/4K0A4431.webp"
                     alt="SJR Truck Tyre"
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                   />
@@ -839,7 +839,7 @@ export default function Home() {
                 {/* Top-right */}
                 <div className="relative rounded-2xl overflow-hidden group">
                   <img
-                    src="/tyre images/New folder (2)/75016 BALWAAN PLUS/4K0A4435.JPG"
+                    src="/tyre images/New folder (2)/75016 BALWAAN PLUS/4K0A4435.webp"
                     alt="SJR Tractor Tyre"
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                   />
@@ -851,7 +851,7 @@ export default function Home() {
                 {/* Bottom-left */}
                 <div className="relative rounded-2xl overflow-hidden group">
                   <img
-                    src="/tyre images/IS 2441....a.JPG"
+                    src="/tyre images/IS 2441....a.webp"
                     alt="SJR Two Wheeler Tyre"
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                   />
@@ -1096,10 +1096,10 @@ export default function Home() {
           {/* Reel cards — link only, no iframes for performance */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {[
-              { code: "C837aLmxZrl", thumb: "/tyre images/New folder (2)/900.16 B SL 91/4K0A4432.JPG" },
-              { code: "C7Q3k1iRCvF", thumb: "/tyre images/New folder (2)/75016 BALWAAN PLUS/4K0A4436.JPG" },
-              { code: "DHIY7agoZGf", thumb: "/tyre images/New folder (2)/317 SMP TT/4K0A4232.JPG" },
-              { code: "DM-Wan5yxS9", thumb: "/tyre images/New folder (2)/400 8 ARYA 9100/4K0A4404.JPG" },
+              { code: "C837aLmxZrl", thumb: "/tyre images/New folder (2)/900.16 B SL 91/4K0A4432.webp" },
+              { code: "C7Q3k1iRCvF", thumb: "/tyre images/New folder (2)/75016 BALWAAN PLUS/4K0A4436.webp" },
+              { code: "DHIY7agoZGf", thumb: "/tyre images/New folder (2)/317 SMP TT/4K0A4232.webp" },
+              { code: "DM-Wan5yxS9", thumb: "/tyre images/New folder (2)/400 8 ARYA 9100/4K0A4404.webp" },
             ].map((reel, i) => (
               <a
                 key={i}
@@ -1132,7 +1132,7 @@ export default function Home() {
         {/* Background */}
         <div className="absolute inset-0 z-0">
           <img
-            src="/tyre images/New folder (2)/900.16 B SL 91/4K0A4431.JPG"
+            src="/tyre images/New folder (2)/900.16 B SL 91/4K0A4431.webp"
             alt="CTA background"
             className="w-full h-full object-contain opacity-10"
             style={{ mixBlendMode: 'luminosity' }}

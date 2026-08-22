@@ -9,7 +9,7 @@ export default function VehicleVisualizer3D() {
       
       {/* 2D Animated SJR Branded Image */}
       <motion.img 
-        src="/images/apc_hero_sjr.png" 
+        src="/images/apc_hero_sjr.webp" 
         alt="VehicleVisualizer3D Render" 
         className="w-full max-w-[85%] sm:max-w-xl object-contain drop-shadow-[0_20px_50px_rgba(0,0,0,0.8)] filter brightness-110 contrast-125 z-10"
         initial={{ opacity: 0, scale: 0.9, y: 20 }}

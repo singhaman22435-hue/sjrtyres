@@ -400,7 +400,7 @@ export default function AdminProducts() {
                   <tr key={product.id} className="hover:bg-white/[0.03] transition-colors group">
                     <td className="px-6 py-4">
                       <div className="w-14 h-14 bg-white rounded-lg p-1.5 flex items-center justify-center overflow-hidden border border-white/10">
-                         <img loading="lazy" src={product.image || '/tyre images/IS 2441....a.JPG'} alt={product.name} className="w-full h-full object-contain mix-blend-multiply transition-transform group-hover:scale-110" />
+                         <img loading="lazy" src={product.image || '/tyre images/IS 2441....a.webp'} alt={product.name} className="w-full h-full object-contain mix-blend-multiply transition-transform group-hover:scale-110" />
                       </div>
                     </td>
                     <td className="px-6 py-4">

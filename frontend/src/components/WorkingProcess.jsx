@@ -156,7 +156,7 @@ const WorkingProcess = () => {
             disablePictureInPicture
             onContextMenu={(e) => e.preventDefault()}
             className="w-full h-full object-cover"
-            poster="/tyre images/IS 2441....c.JPG"
+            poster="/tyre images/IS 2441....c.webp"
           />
         </div>
       </div>

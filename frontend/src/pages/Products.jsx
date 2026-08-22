@@ -8,7 +8,7 @@ import { products as localProducts } from '../productsData';
 function ImageWithSkeleton({ src, alt, className }) {
   const [loaded, setLoaded] = useState(false);
   const [error, setError] = useState(false);
-  const fallback = '/tyre images/New folder (2)/900.16 B SL 91/4K0A4431.JPG';
+  const fallback = '/tyre images/New folder (2)/900.16 B SL 91/4K0A4431.webp';
 
   return (
     <div className="relative w-full h-full">
@@ -264,7 +264,7 @@ export default function Products() {
                     {/* Image */}
                     <Link to={`/product/${product.id}`} className="relative h-56 bg-white flex items-center justify-center p-6 border-b border-white/5 overflow-hidden">
                       <ImageWithSkeleton
-                        src={product.image || '/tyre images/New folder (2)/900.16 B SL 91/4K0A4431.JPG'}
+                        src={product.image || '/tyre images/New folder (2)/900.16 B SL 91/4K0A4431.webp'}
                         alt={product.name}
                         className="w-full h-full object-contain group-hover:scale-110 transition-transform duration-500"
                       />

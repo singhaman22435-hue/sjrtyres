@@ -9,7 +9,7 @@ export default function Bike3D() {
       
       {/* 2D Animated SJR Branded Image */}
       <motion.img 
-        src="/images/bike_hero_sjr.png" 
+        src="/images/bike_hero_sjr.webp" 
         alt="Bike3D Render" 
         className="w-full max-w-[85%] sm:max-w-xl object-contain drop-shadow-[0_20px_50px_rgba(0,0,0,0.8)] filter brightness-110 contrast-125 z-10"
         initial={{ opacity: 0, scale: 0.9, y: 20 }}
