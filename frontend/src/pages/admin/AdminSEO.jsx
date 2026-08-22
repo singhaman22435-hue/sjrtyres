@@ -79,7 +79,7 @@ export default function AdminSEO() {
             <div className="flex items-center justify-between mb-6 pb-6 border-b border-white/5">
               <div className="flex items-center gap-5">
                 <div className="w-14 h-14 bg-white rounded-xl flex items-center justify-center overflow-hidden border border-white/10 p-1">
-                  <img src={product.image || '/tyre images/default.webp'} className="w-full h-full object-contain mix-blend-multiply" />
+                  <img loading="lazy" src={product.image || '/tyre images/default.webp'} className="w-full h-full object-contain mix-blend-multiply" />
                 </div>
                 <div>
                   <h3 className="font-bold text-white text-lg leading-none mb-1.5">{product.name}</h3>

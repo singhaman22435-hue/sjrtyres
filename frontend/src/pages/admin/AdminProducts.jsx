@@ -523,7 +523,7 @@ export default function AdminProducts() {
                       <div className="flex gap-3 mt-4 flex-wrap">
                         {newProduct.images.map((img, idx) => (
                           <div key={idx} className="relative group w-20 h-20 bg-white rounded-xl border-2 border-white/10 flex items-center justify-center p-2">
-                            <img src={img} className="w-full h-full object-contain mix-blend-multiply" />
+                            <img loading="lazy" src={img} className="w-full h-full object-contain mix-blend-multiply" />
                             <button type="button" onClick={() => setNewProduct({...newProduct, images: newProduct.images.filter((_, i) => i !== idx), image: newProduct.image === img ? (newProduct.images[0] || '') : newProduct.image})} className="absolute -top-2 -right-2 bg-red-600 text-white rounded-full w-6 h-6 text-xs flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity shadow-lg hover:bg-red-500">×</button>
                           </div>
                         ))}

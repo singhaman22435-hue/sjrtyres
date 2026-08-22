@@ -459,7 +459,7 @@ export default function Home() {
                 }`}
                 style={{ width: 46, height: 46 }}
               >
-                <img src={s.image} alt={s.model} className="w-full h-full object-cover" />
+                <img loading="lazy" src={s.image} alt={s.model} className="w-full h-full object-cover" />
                 <div className="absolute inset-0 bg-black/20" />
               </button>
             ))}

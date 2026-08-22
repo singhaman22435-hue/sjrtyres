@@ -76,7 +76,7 @@ export default function About() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeLeft} className="relative">
               <div className="relative rounded-3xl overflow-hidden border border-white/8 aspect-[4/3] bg-white flex items-center justify-center">
-                <img src="/tyre images/New folder (2)/75016 BALWAAN PLUS/4K0A4435.JPG" alt="SJR Manufacturing" className="w-full h-full object-contain p-6" />
+                <img loading="lazy" src="/tyre images/New folder (2)/75016 BALWAAN PLUS/4K0A4435.JPG" alt="SJR Manufacturing" className="w-full h-full object-contain p-6" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
                 <div className="absolute bottom-5 left-5 right-5">
                   <div className="bg-black/70 backdrop-blur-xl border border-white/10 rounded-2xl px-5 py-3 inline-block">
@@ -194,7 +194,7 @@ export default function About() {
             ].map((item, i) => (
               <motion.div key={i} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.06 }} className="group bg-white/[0.03] border border-white/8 rounded-3xl overflow-hidden hover:border-white/15 hover:-translate-y-1 transition-all duration-300">
                 <div className="relative h-44 bg-white flex items-center justify-center p-4 overflow-hidden">
-                  <img src={item.image} alt={item.title} className="max-h-full object-contain group-hover:scale-105 transition-transform duration-700" style={{ mixBlendMode: 'multiply' }} />
+                  <img loading="lazy" src={item.image} alt={item.title} className="max-h-full object-contain group-hover:scale-105 transition-transform duration-700" style={{ mixBlendMode: 'multiply' }} />
                   <div className="absolute top-3 right-3 text-white text-[10px] font-black uppercase tracking-widest px-2.5 py-1 rounded-full" style={{ background: item.color }}>{item.tag}</div>
                 </div>
                 <div className="p-6">

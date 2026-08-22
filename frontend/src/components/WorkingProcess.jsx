@@ -151,6 +151,7 @@ const WorkingProcess = () => {
           <video
             src="/WhatsApp%20Video%202026-06-27%20at%2013.45.00.mp4"
             controls
+            preload="none"
             controlsList="nodownload noplaybackrate"
             disablePictureInPicture
             onContextMenu={(e) => e.preventDefault()}

@@ -17,7 +17,7 @@ export default function Footer() {
 
           {/* Brand */}
           <div className="lg:col-span-4">
-            <img 
+            <img loading="lazy" 
               src="/logo.png" 
               alt="SJR Tyres" 
               className="h-10 w-auto object-contain brightness-0 invert mb-6"

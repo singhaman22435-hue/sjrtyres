@@ -96,7 +96,7 @@ export default function AdminCatalog() {
           {Array.from({ length: totalPages }).map((_, i) => (
             <div key={i} className="group relative bg-white/5 border border-white/10 rounded-xl overflow-hidden aspect-[1/1.4] flex items-center justify-center hover:border-brand/50 transition-colors">
               
-              <img 
+              <img loading="lazy" 
                 src={`/catalog/page_${i + 1}.webp`} 
                 alt={`Catalog Page ${i + 1}`} 
                 loading="lazy"

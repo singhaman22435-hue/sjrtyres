@@ -101,7 +101,7 @@ export default function AdminInventory() {
                   <tr key={product.id} className={`hover:bg-white/[0.03] transition-colors group ${isLowStock ? 'bg-red-500/[0.02]' : ''}`}>
                     <td className="px-6 py-4 flex items-center gap-4">
                       <div className="w-12 h-12 bg-white rounded-lg p-1 flex items-center justify-center overflow-hidden border border-white/10">
-                        <img src={product.image || '/tyre images/default.webp'} className="w-full h-full object-contain mix-blend-multiply" />
+                        <img loading="lazy" src={product.image || '/tyre images/default.webp'} className="w-full h-full object-contain mix-blend-multiply" />
                       </div>
                       <div>
                         <div className="font-bold text-white text-base">{product.name}</div>
