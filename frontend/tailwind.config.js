@@ -43,7 +43,7 @@ export default {
       },
       animation: {
         gradient: 'gradient 4s ease infinite',
-        marquee: 'marquee 22s linear infinite',
+        marquee: 'marquee 150s linear infinite',
       },
     },
   },
