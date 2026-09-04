@@ -25,8 +25,8 @@ try:
 except ImportError:
     pass
 
-# We'll save uploads to the frontend's public directory so they can be served directly by Vite locally
-UPLOAD_FOLDER = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'frontend', 'public', 'tyre images')
+# We'll save uploads to the public directory so they can be served directly by Vite locally
+UPLOAD_FOLDER = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'public', 'tyre images')
 try:
     os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 except OSError:
