@@ -19,9 +19,18 @@ try:
 except ImportError:
     pass # Will be handled if not installed
 
-# We'll save uploads to the frontend's public directory so they can be served directly by Vite
+try:
+    import cloudinary
+    import cloudinary.uploader
+except ImportError:
+    pass
+
+# We'll save uploads to the frontend's public directory so they can be served directly by Vite locally
 UPLOAD_FOLDER = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'frontend', 'public', 'tyre images')
-os.makedirs(UPLOAD_FOLDER, exist_ok=True)
+try:
+    os.makedirs(UPLOAD_FOLDER, exist_ok=True)
+except OSError:
+    pass # Read-only file system on Vercel
 
 products_cache = {
     'data': None,
@@ -245,10 +254,26 @@ def bulk_upload_product():
     for file in images:
         if file.filename == '':
             continue
-        filename = f"{int(time.time())}_{secure_filename(file.filename)}"
-        filepath = os.path.join(UPLOAD_FOLDER, filename)
-        file.save(filepath)
-        url = f"/tyre images/{filename}"
+            
+        url = ""
+        # If Cloudinary is configured (e.g. on Vercel), upload there
+        if os.getenv("CLOUDINARY_URL"):
+            try:
+                upload_result = cloudinary.uploader.upload(file, folder="sjr_tyres")
+                url = upload_result.get("secure_url")
+            except Exception as e:
+                print("Cloudinary Upload Error:", e)
+                return jsonify({'error': f'Cloudinary upload failed: {str(e)}'}), 500
+        else:
+            # Fallback for local development (Render / Localhost)
+            filename = f"{int(time.time())}_{secure_filename(file.filename)}"
+            filepath = os.path.join(UPLOAD_FOLDER, filename)
+            try:
+                file.save(filepath)
+                url = f"/tyre images/{filename}"
+            except Exception as e:
+                return jsonify({'error': f'Local upload failed (maybe read-only filesystem like Vercel? Configure CLOUDINARY_URL!): {str(e)}'}), 500
+                
         image_urls.append(url)
         if not main_image:
             main_image = url
