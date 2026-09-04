@@ -1,4 +1,4 @@
-import { ShieldCheck, Cog, Award, Search, ArrowRight, Quote, Plus, CheckCircle, ShoppingCart, Star, TrendingUp, Droplets, Play, Phone, Zap, Globe, Factory, ChevronRight } from 'lucide-react';
+import { ShieldCheck, Cog, Award, Search, ArrowRight, Quote, Plus, CheckCircle, ShoppingCart, Star, TrendingUp, Droplets, Play, Phone, Zap, Globe, Factory } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useState, useEffect, useRef } from 'react';
 import { siteData } from '../siteData';
@@ -65,91 +65,6 @@ function AnimatedCounter({ value, suffix = '' }) {
   return <span>{count}{suffix}</span>;
 }
 
-// ─── Tyre Cross-Section Visual (CSS Art — no infinite Framer Motion) ──────────
-function TyreCrossSectionArt({ activeLayer }) {
-  const layers = [
-    { id: 'casing', color: '#a855f7', size: 220 },
-    { id: 'bead', color: '#3b82f6', size: 160 },
-    { id: 'rim', color: '#22c55e', size: 100 },
-  ];
-
-  return (
-    <div className="relative flex items-center justify-center" style={{ width: 280, height: 280 }}>
-      {/* Outer glow — CSS animation */}
-      <div
-        className="absolute rounded-full pointer-events-none"
-        style={{
-          width: 300, height: 300,
-          background: 'radial-gradient(circle, rgba(239,68,68,0.1) 0%, transparent 70%)',
-        }}
-      />
-      {/* Rings — pure CSS transitions */}
-      {layers.map((layer) => (
-        <div
-          key={layer.id}
-          className="absolute rounded-full"
-          style={{
-            width: layer.size,
-            height: layer.size,
-            background: `radial-gradient(circle at 38% 38%, #2a2a2a, #0a0a0a)`,
-            border: `${activeLayer === layer.id ? 3 : 1.5}px solid ${activeLayer === layer.id ? layer.color : layer.color + '35'}`,
-            boxShadow: activeLayer === layer.id
-              ? `0 0 22px ${layer.color}45, inset 0 0 14px ${layer.color}15`
-              : 'none',
-            transform: activeLayer === layer.id ? 'scale(1.04)' : 'scale(1)',
-            transition: 'border 0.35s ease, box-shadow 0.35s ease, transform 0.35s ease',
-          }}
-        />
-      ))}
-      {/* Tread tick marks */}
-      {Array.from({ length: 24 }, (_, i) => {
-        const angle = (i / 24) * 360;
-        return (
-          <div
-            key={i}
-            className="absolute"
-            style={{
-              width: 2, height: 14,
-              background: '#a855f7', opacity: 0.22, borderRadius: 1,
-              transformOrigin: '1px 140px',
-              transform: `rotate(${angle}deg)`,
-              top: '50%', left: '50%', marginTop: -140, marginLeft: -1,
-            }}
-          />
-        );
-      })}
-      {/* Spokes */}
-      {Array.from({ length: 5 }, (_, i) => {
-        const angle = (i / 5) * 360;
-        return (
-          <div
-            key={i}
-            className="absolute"
-            style={{
-              width: 1.5, height: 56,
-              background: 'linear-gradient(to bottom, #a855f755, transparent)',
-              transformOrigin: '0.75px 28px',
-              transform: `rotate(${angle}deg)`,
-              top: '50%', left: '50%', marginTop: -28, marginLeft: -0.75, zIndex: 9,
-            }}
-          />
-        );
-      })}
-      {/* Center hub */}
-      <div
-        className="absolute rounded-full flex items-center justify-center"
-        style={{
-          width: 54, height: 54,
-          background: 'linear-gradient(135deg, #2a2a2a, #111)',
-          border: '2px solid rgba(239,68,68,0.4)', zIndex: 10,
-        }}
-      >
-        <div className="w-4 h-4 rounded-full bg-brand opacity-70" />
-      </div>
-    </div>
-  );
-}
-
 
 // ─── Hero Slides ───────────────────────────────────────────────────────────────
 const heroSlides = [
@@ -206,7 +121,6 @@ export default function Home() {
   const [vehicleType, setVehicleType] = useState('');
   const [openFaq, setOpenFaq] = useState(null);
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [activeLayer, setActiveLayer] = useState('tread');
   const [countersVisible, setCountersVisible] = useState(false);
   const heroRef = useRef(null);
   const countersRef = useRef(null);
@@ -230,17 +144,6 @@ export default function Home() {
     return () => observer.disconnect();
   }, []);
 
-  // Auto-cycle anatomy layers
-  useEffect(() => {
-    const layers = ['tread', 'belt', 'casing', 'bead', 'rim'];
-    let idx = 0;
-    const interval = setInterval(() => {
-      idx = (idx + 1) % layers.length;
-      setActiveLayer(layers[idx]);
-    }, 2000);
-    return () => clearInterval(interval);
-  }, []);
-
   const toggleFaq = (id) => setOpenFaq(openFaq === id ? null : id);
 
   const handleSearch = (e) => {
@@ -254,9 +157,7 @@ export default function Home() {
     { id: 'casing', label: 'Nylon Carcass', desc: '3D sipe interlocking for cornering stability.', color: '#a855f7' },
     { id: 'bead', label: 'Armor Sidewall', desc: 'Kevlar-reinforced inserts for off-road protection.', color: '#3b82f6' },
     { id: 'rim', label: 'Bead Wire', desc: 'High-strength wire for perfect rim seating.', color: '#22c55e' },
-  ];
-
-  return (
+  ];return (
     <div className="w-full overflow-hidden bg-black" ref={heroRef}>
 
       {/* ═══════════════════════════════════════════════════════════════════
@@ -384,69 +285,58 @@ export default function Home() {
           </div>
         </div>
 
-        {/* ── RIGHT: Product Image Showcase ── */}
-        <div className="relative w-full lg:w-1/2 min-h-[60vh] lg:min-h-screen bg-[#060606] flex items-center justify-center overflow-hidden">
+        {/* ── RIGHT: Cinematic Full-Bleed Product Showcase ── */}
+        <div className="relative w-full lg:w-1/2 min-h-[65vh] lg:min-h-screen bg-[#060606] flex items-center justify-center overflow-hidden">
 
-          {/* Ambient gradient — changes per slide */}
+          {/* Full-bleed image with animated crossfade */}
           <AnimatePresence mode="wait">
             <motion.div
-              key={`glow-${currentSlide}`}
-              className="absolute inset-0 pointer-events-none"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
+              key={`bg-${currentSlide}`}
+              className="absolute inset-0"
+              initial={{ opacity: 0, scale: 1.06 }}
+              animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 0.8 }}
-              style={{
-                background: `radial-gradient(ellipse 70% 60% at 50% 50%, ${slide.color}22 0%, transparent 70%)`,
-              }}
-            />
+              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <img
+                src={slide.image}
+                alt={slide.model}
+                className="w-full h-full object-cover"
+              />
+              {/* Dramatic color overlay matching slide accent */}
+              <div
+                className="absolute inset-0"
+                style={{ background: `linear-gradient(135deg, ${slide.color}33 0%, transparent 60%, rgba(6,6,6,0.85) 100%)` }}
+              />
+              {/* Left vignette to blend with text panel */}
+              <div className="absolute inset-0" style={{ background: 'linear-gradient(to right, rgba(6,6,6,0.7) 0%, transparent 35%)' }} />
+              {/* Bottom fade */}
+              <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(6,6,6,0.9) 0%, transparent 40%)' }} />
+            </motion.div>
           </AnimatePresence>
 
           {/* Floating particles */}
-          <FloatingParticles count={20} />
+          <FloatingParticles count={12} />
 
-          {/* SVG dot grid */}
-          <svg className="absolute inset-0 w-full h-full opacity-[0.035] pointer-events-none" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <pattern id="dot-grid" x="0" y="0" width="28" height="28" patternUnits="userSpaceOnUse">
-                <circle cx="1" cy="1" r="1" fill="white" />
-              </pattern>
-            </defs>
-            <rect width="100%" height="100%" fill="url(#dot-grid)" />
-          </svg>
-
-          {/* Main Product Image */}
-          <div className="relative z-10 w-full max-w-[480px] aspect-square flex items-center justify-center p-8">
+          {/* Model name — vertical watermark on right edge */}
+          <div className="absolute right-5 top-1/2 -translate-y-1/2 z-20 hidden lg:flex flex-col items-center gap-3">
+            <div className="w-px h-16 bg-gradient-to-b from-transparent via-white/20 to-transparent" />
             <AnimatePresence mode="wait">
               <motion.div
-                key={`img-${currentSlide}`}
-                className="relative w-full h-full"
-                initial={{ opacity: 0, scale: 0.85, y: 20 }}
-                animate={{ opacity: 1, scale: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.9, y: -10 }}
-                transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
+                key={`vtext-${currentSlide}`}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                className="text-white/25 text-[9px] font-black uppercase tracking-[0.5em] font-mono"
+                style={{ writingMode: 'vertical-rl' }}
               >
-                {/* Glow ring behind image */}
-                <div
-                  className="absolute inset-0 rounded-full blur-3xl opacity-25 scale-75"
-                  style={{ background: `radial-gradient(circle, ${slide.color} 0%, transparent 70%)` }}
-                />
-                {/* Product image */}
-                <img
-                  src={slide.image}
-                  alt={slide.model}
-                  className="relative z-10 w-full h-full object-contain"
-                  style={{ filter: 'drop-shadow(0 20px 60px rgba(0,0,0,0.8))' }}
-                />
-                {/* Reflection fade */}
-                <div className="absolute bottom-0 left-0 right-0 h-1/3 pointer-events-none"
-                  style={{ background: 'linear-gradient(to top, rgba(6,6,6,0.8), transparent)' }}
-                />
+                {slide.model}
               </motion.div>
             </AnimatePresence>
+            <div className="w-px h-16 bg-gradient-to-b from-transparent via-white/20 to-transparent" />
           </div>
 
-          {/* Thumbnail strip at bottom */}
+          {/* Thumbnail strip */}
           <div className="absolute bottom-6 left-0 right-0 flex justify-center gap-3 z-20">
             {heroSlides.map((s, i) => (
               <button
@@ -465,7 +355,27 @@ export default function Home() {
             ))}
           </div>
 
-          {/* Floating model badge */}
+          {/* Tagline pill bottom-left */}
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={`tagline-${currentSlide}`}
+              initial={{ opacity: 0, x: -16 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: 16 }}
+              transition={{ duration: 0.3 }}
+              className="absolute bottom-20 left-8 z-20 hidden md:block"
+            >
+              <div
+                className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest border"
+                style={{ color: slide.color, borderColor: `${slide.color}50`, background: `${slide.color}12` }}
+              >
+                <span className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ background: slide.color }} />
+                {slide.tagline}
+              </div>
+            </motion.div>
+          </AnimatePresence>
+
+          {/* Floating model badge top-right */}
           <AnimatePresence mode="wait">
             <motion.div
               key={`badge2-${currentSlide}`}
@@ -473,7 +383,7 @@ export default function Home() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
               transition={{ duration: 0.3, delay: 0.15 }}
-              className="absolute top-8 right-6 z-20"
+              className="absolute top-8 right-14 z-20"
             >
               <div
                 className="inline-flex flex-col items-start gap-0.5 bg-black/70 backdrop-blur-xl border border-white/10 rounded-xl px-4 py-2.5 shadow-xl"
@@ -487,7 +397,7 @@ export default function Home() {
           </AnimatePresence>
 
           {/* Watermark */}
-          <div className="absolute bottom-8 right-8 text-white/[0.03] text-8xl font-black select-none pointer-events-none leading-none tracking-tighter">SJR</div>
+          <div className="absolute bottom-8 right-16 text-white/[0.03] text-8xl font-black select-none pointer-events-none leading-none tracking-tighter">SJR</div>
         </div>
       </section>
 
@@ -650,7 +560,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ═══ ANATOMY SECTION — Interactive CSS Tyre Art ══════════════════════ */}
+      {/* ═══ ANATOMY SECTION — Real Product Image + Feature Cards ══════════════ */}
       <section className="py-28 bg-[#050505] border-t border-white/5 overflow-hidden">
         <div className="max-w-7xl mx-auto px-4">
           <motion.div
@@ -704,25 +614,36 @@ export default function Home() {
                     </div>
                     <div className="text-xs text-white/35 mt-1 leading-relaxed">{layer.desc}</div>
                   </div>
-                  <ChevronRight
-                    size={16}
-                    className={`ml-auto mt-0.5 transition-all duration-300 flex-shrink-0 ${
-                      activeLayer === layer.id ? 'text-white/50 translate-x-0.5' : 'text-white/15'
-                    }`}
-                  />
                 </button>
               ))}
             </motion.div>
 
-            {/* Center: CSS Tyre Art */}
+            {/* Center: Real Product Image (replacing CSS art rings) */}
             <motion.div
-              initial={{ opacity: 0, scale: 0.85 }}
+              initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="flex items-center justify-center flex-shrink-0"
+              className="flex items-center justify-center flex-shrink-0 relative"
             >
-              <TyreCrossSectionArt activeLayer={activeLayer} />
+              {/* Glow behind the image */}
+              <div
+                className="absolute inset-0 rounded-3xl blur-3xl opacity-20 scale-110 pointer-events-none"
+                style={{ background: 'radial-gradient(circle, rgba(239,68,68,0.8) 0%, transparent 70%)' }}
+              />
+              <div className="relative rounded-3xl overflow-hidden border border-white/10 shadow-[0_0_80px_rgba(0,0,0,0.8)]" style={{ width: 320, height: 320 }}>
+                <img
+                  src="/tyre images/New folder (2)/317 SMP TT/4K0A4231.webp"
+                  alt="SJR Tyre Cross Section"
+                  className="w-full h-full object-cover"
+                />
+                {/* Overlay with branded gradient */}
+                <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg, rgba(239,68,68,0.15) 0%, transparent 60%, rgba(0,0,0,0.6) 100%)' }} />
+                {/* Corner label */}
+                <div className="absolute top-4 left-4 bg-brand text-white text-[9px] font-black uppercase tracking-widest px-3 py-1 rounded-full">
+                  Precision Engineered
+                </div>
+              </div>
             </motion.div>
 
             {/* Right: Key specs */}
