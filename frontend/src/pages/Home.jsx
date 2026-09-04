@@ -157,7 +157,11 @@ export default function Home() {
     { id: 'casing', label: 'Nylon Carcass', desc: '3D sipe interlocking for cornering stability.', color: '#a855f7' },
     { id: 'bead', label: 'Armor Sidewall', desc: 'Kevlar-reinforced inserts for off-road protection.', color: '#3b82f6' },
     { id: 'rim', label: 'Bead Wire', desc: 'High-strength wire for perfect rim seating.', color: '#22c55e' },
-  ];return (
+  ];
+
+  const [activeLayer, setActiveLayer] = useState(anatomyLayers[0].id);
+
+  return (
     <div className="w-full overflow-hidden bg-black" ref={heroRef}>
 
       {/* ═══════════════════════════════════════════════════════════════════
