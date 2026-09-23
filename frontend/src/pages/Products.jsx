@@ -98,7 +98,7 @@ export default function Products() {
   }, [location.search]);
 
   useEffect(() => {
-    const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5005';
+    const API_URL = import.meta.env.PROD ? '' : 'http://localhost:5005';
     fetch(`${API_URL}/api/products`)
       .then(res => {
         if (!res.ok) throw new Error('API Error');

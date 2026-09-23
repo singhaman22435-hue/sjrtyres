@@ -15,7 +15,7 @@ export default function AdminLogin() {
     e.preventDefault();
     setLoading(true);
     try {
-      const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5005';
+      const API_URL = import.meta.env.PROD ? '' : 'http://localhost:5005';
       const res = await axios.post(`${API_URL}/api/admin/login`, { username, password });
       if (res.data.token) {
         localStorage.setItem('adminToken', res.data.token);

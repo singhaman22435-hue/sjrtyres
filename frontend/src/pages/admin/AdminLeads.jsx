@@ -16,7 +16,7 @@ export default function AdminLeads() {
   const fetchLeads = async () => {
     try {
       const token = localStorage.getItem('adminToken');
-      const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5005';
+      const API_URL = import.meta.env.PROD ? '' : 'http://localhost:5005';
       const response = await axios.get(`${API_URL}/api/leads`, {
         headers: { Authorization: `Bearer ${token}` }
       });
@@ -31,7 +31,7 @@ export default function AdminLeads() {
   const updateLeadStatus = async (leadId, newStatus) => {
     try {
       const token = localStorage.getItem('adminToken');
-      const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5005';
+      const API_URL = import.meta.env.PROD ? '' : 'http://localhost:5005';
       await axios.put(`${API_URL}/api/leads/${leadId}`, { status: newStatus }, {
         headers: { Authorization: `Bearer ${token}` }
       });
@@ -46,7 +46,7 @@ export default function AdminLeads() {
     setLeads(leads.filter(l => l._id !== leadId));
     try {
       const token = localStorage.getItem('adminToken');
-      const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5005';
+      const API_URL = import.meta.env.PROD ? '' : 'http://localhost:5005';
       await axios.delete(`${API_URL}/api/leads/${leadId}`, {
         headers: { Authorization: `Bearer ${token}` }
       });

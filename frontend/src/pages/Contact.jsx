@@ -16,7 +16,7 @@ export default function Contact() {
     e.preventDefault();
     setStatus('submitting');
     try {
-      const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5005';
+      const API_URL = import.meta.env.PROD ? '' : 'http://localhost:5005';
       await axios.post(`${API_URL}/api/contact`, formData);
       setStatus('success');
       setFormData({ name: '', email: '', phone: '', vehicleType: 'General', message: '' });

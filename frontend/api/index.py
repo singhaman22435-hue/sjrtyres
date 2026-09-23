@@ -339,13 +339,27 @@ def upload_images():
     for file in files:
         if file.filename == '':
             continue
-        # Use a timestamp to avoid overwriting
-        filename = f"{int(time.time())}_{file.filename}"
-        # We save directly to the frontend's public/tyre images folder
-        filepath = os.path.join(UPLOAD_FOLDER, filename)
-        file.save(filepath)
-        # The URL that the frontend will use to fetch the image
-        image_urls.append(f"/tyre images/{filename}")
+            
+        url = ""
+        # If Cloudinary is configured (e.g. on Vercel), upload there
+        if os.getenv("CLOUDINARY_URL"):
+            try:
+                upload_result = cloudinary.uploader.upload(file, folder="sjr_tyres")
+                url = upload_result.get("secure_url")
+            except Exception as e:
+                print("Cloudinary Upload Error:", e)
+                return jsonify({'error': f'Cloudinary upload failed: {str(e)}'}), 500
+        else:
+            # Fallback for local development (Render / Localhost)
+            filename = f"{int(time.time())}_{secure_filename(file.filename)}"
+            filepath = os.path.join(UPLOAD_FOLDER, filename)
+            try:
+                file.save(filepath)
+                url = f"/tyre images/{filename}"
+            except Exception as e:
+                return jsonify({'error': f'Local upload failed (maybe read-only filesystem like Vercel? Configure CLOUDINARY_URL!): {str(e)}'}), 500
+                
+        image_urls.append(url)
         
     return jsonify({'urls': image_urls}), 200
 

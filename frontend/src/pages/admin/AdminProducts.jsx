@@ -54,7 +54,7 @@ export default function AdminProducts() {
 
     try {
       const token = localStorage.getItem('adminToken');
-      const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5005';
+      const API_URL = import.meta.env.PROD ? '' : 'http://localhost:5005';
       const res = await fetch(`${API_URL}/api/upload`, {
         method: 'POST',
         headers: { Authorization: `Bearer ${token}` },
@@ -86,7 +86,7 @@ export default function AdminProducts() {
   };
 
   const fetchProducts = () => {
-    const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5005';
+    const API_URL = import.meta.env.PROD ? '' : 'http://localhost:5005';
     const controller = new AbortController();
     const timeoutId = setTimeout(() => controller.abort(), 4000); // 4 second timeout
 
@@ -124,7 +124,7 @@ export default function AdminProducts() {
     if(window.confirm(`Are you sure you want to completely delete ${name} from the database?`)) {
       try {
         const token = localStorage.getItem('adminToken');
-        const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5005';
+        const API_URL = import.meta.env.PROD ? '' : 'http://localhost:5005';
         const res = await fetch(`${API_URL}/api/products/${id}`, {
           method: 'DELETE',
           headers: { Authorization: `Bearer ${token}` }
@@ -150,7 +150,7 @@ export default function AdminProducts() {
 
     setUploading(true);
     const token = localStorage.getItem('adminToken');
-    const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5005';
+    const API_URL = import.meta.env.PROD ? '' : 'http://localhost:5005';
 
     // Group files by subfolder name (Product Name)
     const productsGroups = {};
@@ -218,7 +218,7 @@ export default function AdminProducts() {
     e.preventDefault();
     try {
       const token = localStorage.getItem('adminToken');
-      const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5005';
+      const API_URL = import.meta.env.PROD ? '' : 'http://localhost:5005';
       const url = isEditing ? `${API_URL}/api/products/${newProduct.id}` : `${API_URL}/api/products`;
       const method = isEditing ? 'PUT' : 'POST';
       

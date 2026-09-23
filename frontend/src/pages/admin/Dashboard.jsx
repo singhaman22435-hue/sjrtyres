@@ -14,7 +14,7 @@ export default function Dashboard() {
     setLoading(true);
     try {
       const token = localStorage.getItem('adminToken');
-      const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5005';
+      const API_URL = import.meta.env.PROD ? '' : 'http://localhost:5005';
       const response = await axios.get(`${API_URL}/api/admin/analytics`, {
         headers: { Authorization: `Bearer ${token}` },
         timeout: 4000 // 4 second timeout so it fails fast if backend hangs
