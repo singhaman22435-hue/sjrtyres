@@ -14,15 +14,24 @@ export default function AdminLogin() {
   const handleLogin = async (e) => {
     e.preventDefault();
     setLoading(true);
+    setError('');
     try {
       const API_URL = import.meta.env.PROD ? '' : 'http://localhost:5005';
-      const res = await axios.post(`${API_URL}/api/admin/login`, { username, password });
+      const res = await axios.post(`${API_URL}/api/admin/login`, { username: username.trim(), password });
       if (res.data.token) {
         localStorage.setItem('adminToken', res.data.token);
         navigate('/admin');
       }
     } catch (err) {
-      setError('Invalid User ID or Password. (Hint: use admin / admin)');
+      if (!err.response) {
+        setError('Backend server connect nahi ho raha (Port 5005 offline). Terminal me backend start karein.');
+      } else if (err.response.status === 429) {
+        setError('Too many attempts. 1 minute wait karke try karein.');
+      } else if (err.response.status === 401) {
+        setError('Invalid User ID or Password. (Hint: use admin / admin)');
+      } else {
+        setError(err.response.data?.error || 'Login failed. Please try again.');
+      }
       setLoading(false);
     }
   };

@@ -4,6 +4,10 @@ from psycopg2.pool import ThreadedConnectionPool
 from psycopg2.extras import RealDictCursor
 from dotenv import load_dotenv
 
+# Load environment variables
+env_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), '.env')
+if os.path.exists(env_file):
+    load_dotenv(env_file)
 load_dotenv()
 
 # Neon.tech or Local Postgres URI
@@ -116,7 +120,7 @@ def init_db():
         
         conn.commit()
         cursor.close()
-        print("✅ PostgreSQL Database Initialized (Neon Tech Ready)")
+        print("[OK] PostgreSQL Database Initialized (Neon Tech Ready)")
     except Exception as e:
         print(f"Error initializing database: {e}")
     finally:
