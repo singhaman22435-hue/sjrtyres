@@ -11,7 +11,8 @@ if os.path.exists(env_file):
 load_dotenv()
 
 # Neon.tech or Local Postgres URI
-DATABASE_URL = os.getenv("DATABASE_URL", "postgresql://postgres:postgres@localhost:5432/sjr_tyres")
+DEFAULT_NEON_URL = "postgresql://neondb_owner:npg_IGCqpJEKh4d8@ep-bitter-firefly-ai18y2k1-pooler.c-4.us-east-1.aws.neon.tech/neondb?sslmode=require"
+DATABASE_URL = os.getenv("DATABASE_URL", DEFAULT_NEON_URL)
 
 # Global Connection Pool
 try:

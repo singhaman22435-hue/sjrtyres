@@ -24,13 +24,24 @@ export default function AdminLogin() {
       }
     } catch (err) {
       if (!err.response) {
-        setError('Backend server connect nahi ho raha (Port 5005 offline). Terminal me backend start karein.');
+        setError(import.meta.env.PROD 
+          ? 'Server connect nahi ho raha hai. Please try again shortly.' 
+          : 'Backend server connect nahi ho raha (Port 5005 offline). Terminal me backend start karein.');
       } else if (err.response.status === 429) {
         setError('Too many attempts. 1 minute wait karke try karein.');
       } else if (err.response.status === 401) {
         setError('Invalid User ID or Password. (Hint: use admin / admin)');
       } else {
-        setError(err.response.data?.error || 'Login failed. Please try again.');
+        const errData = err.response.data?.error;
+        let msg = 'Login failed. Please try again.';
+        if (typeof errData === 'string') {
+          msg = errData;
+        } else if (errData && typeof errData === 'object') {
+          msg = errData.message || errData.code || 'Server function error';
+        } else if (typeof err.response.data === 'string' && err.response.data) {
+          msg = err.response.data.slice(0, 100);
+        }
+        setError(msg);
       }
       setLoading(false);
     }
@@ -71,7 +82,7 @@ export default function AdminLogin() {
               animate={{ opacity: 1, y: 0 }} 
               className="mb-6 p-4 bg-red-500/10 border border-red-500/30 text-red-500 rounded-xl text-center text-xs font-bold uppercase tracking-widest"
             >
-              {error}
+              {typeof error === 'string' ? error : (error?.message || JSON.stringify(error))}
             </motion.div>
           )}
 

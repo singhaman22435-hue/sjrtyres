@@ -1,3 +1,11 @@
+import sys
+import os
+
+# Ensure the api directory is in sys.path so 'import db' works on Vercel
+api_dir = os.path.dirname(os.path.abspath(__file__))
+if api_dir not in sys.path:
+    sys.path.insert(0, api_dir)
+
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 from flask_compress import Compress
@@ -9,11 +17,9 @@ import jwt
 from functools import wraps
 from db import get_db_connection, init_db
 import datetime
-import os
 import time
 import json
 from werkzeug.utils import secure_filename # For safe filenames
-from waitress import serve
 try:
     import docx
 except ImportError:
@@ -650,6 +656,7 @@ def get_logs():
         conn.close()
 
 if __name__ == '__main__':
+    from waitress import serve
     port = int(os.environ.get('PORT', 5005))
     print(f"Starting Waitress production server on port {port}...")
     serve(app, host='0.0.0.0', port=port, threads=6)
