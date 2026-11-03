@@ -63,33 +63,6 @@ export const products = [
     ]
   },
   {
-    "id": 3,
-    "name": "318 MGP TL",
-    "category": "Two-Wheeler",
-    "fitment": "Universal",
-    "brand": "SJR Tyres",
-    "applications": [
-      "General"
-    ],
-    "image": "/tyre%20images/New%20folder/318%20MGP%20TL/4K0A4199.webp",
-    "description": "Premium SJR Tyre",
-    "specs": {
-      "loadCapacity": "N/A",
-      "maxSpeed": "N/A",
-      "rimSize": "N/A",
-      "pressure": "N/A"
-    },
-    "metrics": {
-      "traction": 85,
-      "durability": 90,
-      "fuelEfficiency": 80,
-      "comfort": 85
-    },
-    "images": [
-      "/tyre%20images/New%20folder/318%20MGP%20TL/4K0A4199.webp"
-    ]
-  },
-  {
     "id": 4,
     "name": "100/90-17 Speed X10 Tubeless 55P",
     "category": "Two-Wheeler",
@@ -818,7 +791,7 @@ export const products = [
     "applications": [
       "General"
     ],
-    "image": "/tyre%20images/New%20folder%20%282%29/318%20MGP%20TL/4K0A4199.webp",
+    "image": "/tyre%20images/New%20folder%20%282%29/318%20MGP%20TL/4K0A4201.webp",
     "description": "Amazon Product Listing Required Details Item Name \u2013 3.00-18 Milo Gripp Plus Tubeless 6PR 52P Your price \u2013...",
     "specs": {
       "loadCapacity": "52",
@@ -833,7 +806,6 @@ export const products = [
       "comfort": 85
     },
     "images": [
-      "/tyre%20images/New%20folder%20%282%29/318%20MGP%20TL/4K0A4199.webp",
       "/tyre%20images/New%20folder%20%282%29/318%20MGP%20TL/4K0A4201.webp",
       "/tyre%20images/New%20folder%20%282%29/318%20MGP%20TL/4K0A4202.webp",
       "/tyre%20images/New%20folder%20%282%29/318%20MGP%20TL/4K0A4203.webp"
