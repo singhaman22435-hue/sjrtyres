@@ -51,7 +51,9 @@ export default function AdminInventory() {
     setProducts(products.map(p => p.id === id ? { ...p, [field]: value } : p));
   };
 
-  const filteredProducts = products.filter(p => p.name.toLowerCase().includes(searchTerm.toLowerCase()));
+  const filteredProducts = Array.isArray(products)
+    ? products.filter(p => p.name?.toLowerCase().includes(searchTerm.toLowerCase()))
+    : [];
 
   return (
     <div className="space-y-8">

@@ -74,12 +74,12 @@ export default function AdminLeads() {
 
   // Group leads by column
   const groupedLeads = COLUMNS.reduce((acc, col) => {
-    acc[col] = leads.filter(l => l.status === col);
+    acc[col] = (leads || []).filter(l => l.status === col);
     return acc;
   }, {});
 
   // Add any unmapped status to Pending
-  leads.forEach(l => {
+  (leads || []).forEach(l => {
     if (!COLUMNS.includes(l.status)) {
       if (!groupedLeads['Pending']) groupedLeads['Pending'] = [];
       if (!groupedLeads['Pending'].find(existing => existing._id === l._id)) {

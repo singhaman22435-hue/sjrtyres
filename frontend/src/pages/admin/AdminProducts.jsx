@@ -263,9 +263,9 @@ export default function AdminProducts() {
 
   // Filter Logic
   const filteredProducts = useMemo(() => {
-    return products.filter(product => {
-      const matchSearch = product.name.toLowerCase().includes(searchTerm.toLowerCase()) || 
-                          product.brand.toLowerCase().includes(searchTerm.toLowerCase());
+    return (products || []).filter(product => {
+      const matchSearch = (product?.name || '').toLowerCase().includes(searchTerm.toLowerCase()) || 
+                          (product?.brand || '').toLowerCase().includes(searchTerm.toLowerCase());
       const matchCat = selectedCategory === '' || product.category === selectedCategory;
       const matchFit = selectedFitment === '' || product.fitment === selectedFitment;
       const matchBrand = selectedBrand === '' || product.brand === selectedBrand;

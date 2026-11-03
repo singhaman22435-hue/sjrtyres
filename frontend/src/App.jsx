@@ -5,6 +5,7 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import ProtectedRoute from './components/ProtectedRoute';
 import ServerWakeup from './components/ServerWakeup';
+import ErrorBoundary from './components/ErrorBoundary';
 // Immediately wake up Render.com backend on first bundle load
 import './useBackendWarmup';
 
@@ -49,33 +50,35 @@ function AppContent() {
       <div className="flex flex-col min-h-screen bg-[#080808] text-text-primary font-body relative selection:bg-brand selection:text-white">
         {!isAdmin && <Navbar />}
         <main className="flex-grow relative z-10">
-          <Suspense fallback={<PageSkeleton />}>
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/products" element={<Products />} />
-              <Route path="/catalog" element={<Catalog />} />
-              <Route path="/warranty" element={<Warranty />} />
-              <Route path="/product/:id" element={<ProductDetail />} />
-              <Route path="/contact" element={<Contact />} />
+          <ErrorBoundary>
+            <Suspense fallback={<PageSkeleton />}>
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/about" element={<About />} />
+                <Route path="/products" element={<Products />} />
+                <Route path="/catalog" element={<Catalog />} />
+                <Route path="/warranty" element={<Warranty />} />
+                <Route path="/product/:id" element={<ProductDetail />} />
+                <Route path="/contact" element={<Contact />} />
 
-              {/* Admin Routes */}
-              <Route path="/admin/login" element={<AdminLogin />} />
-              <Route path="/admin" element={<ProtectedRoute />}>
-                <Route element={<AdminLayout />}>
-                  <Route index element={<Dashboard />} />
-                  <Route path="products" element={<AdminProducts />} />
-                  <Route path="leads" element={<AdminLeads />} />
-                  <Route path="inventory" element={<AdminInventory />} />
-                  <Route path="catalog" element={<AdminCatalog />} />
-                  <Route path="cms" element={<AdminCMS />} />
-                  <Route path="seo" element={<AdminSEO />} />
-                  <Route path="logs" element={<AdminLogs />} />
-                  <Route path="settings" element={<AdminSettings />} />
+                {/* Admin Routes */}
+                <Route path="/admin/login" element={<AdminLogin />} />
+                <Route path="/admin" element={<ProtectedRoute />}>
+                  <Route element={<AdminLayout />}>
+                    <Route index element={<Dashboard />} />
+                    <Route path="products" element={<AdminProducts />} />
+                    <Route path="leads" element={<AdminLeads />} />
+                    <Route path="inventory" element={<AdminInventory />} />
+                    <Route path="catalog" element={<AdminCatalog />} />
+                    <Route path="cms" element={<AdminCMS />} />
+                    <Route path="seo" element={<AdminSEO />} />
+                    <Route path="logs" element={<AdminLogs />} />
+                    <Route path="settings" element={<AdminSettings />} />
+                  </Route>
                 </Route>
-              </Route>
-            </Routes>
-          </Suspense>
+              </Routes>
+            </Suspense>
+          </ErrorBoundary>
         </main>
         {!isAdmin && <Footer />}
       </div>

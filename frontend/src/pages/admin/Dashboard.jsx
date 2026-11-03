@@ -107,7 +107,9 @@ export default function Dashboard() {
             
             <div className="flex items-end gap-3 relative z-10">
               <p className="text-5xl font-black text-white">{metric.value}</p>
-              {metric.title === "Conversion Rate" && <span className="text-brand font-bold text-lg mb-1">%</span>}
+              {metric.title === "Conversion Rate" && !String(metric.value).includes('%') && (
+                <span className="text-brand font-bold text-lg mb-1">%</span>
+              )}
             </div>
           </motion.div>
         ))}
@@ -122,19 +124,26 @@ export default function Dashboard() {
             <div className="w-2 h-2 rounded-full bg-blue-500"></div>
             <h3 className="text-xs font-bold text-white uppercase tracking-widest">Leads by Status</h3>
           </div>
-          <div className="h-[300px] w-full">
-            <ResponsiveContainer width="100%" height="100%">
-              <BarChart data={analytics.leads_by_status} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
-                <XAxis dataKey="name" stroke="#666" tick={{ fill: '#666', fontSize: 10 }} axisLine={false} tickLine={false} />
-                <YAxis stroke="#666" tick={{ fill: '#666', fontSize: 10 }} axisLine={false} tickLine={false} />
-                <Tooltip 
-                  cursor={{ fill: 'rgba(255,255,255,0.02)' }} 
-                  contentStyle={{ backgroundColor: '#0a0a0a', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '12px', fontSize: '12px' }} 
-                  itemStyle={{ color: '#fff', fontWeight: 'bold' }}
-                />
-                <Bar dataKey="value" fill="#3b82f6" radius={[6, 6, 0, 0]} barSize={40} />
-              </BarChart>
-            </ResponsiveContainer>
+          <div className="h-[300px] w-full min-h-[300px]">
+            {analytics.leads_by_status && analytics.leads_by_status.length > 0 ? (
+              <ResponsiveContainer width="100%" height="100%" minWidth={0} minHeight={300}>
+                <BarChart data={analytics.leads_by_status} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
+                  <XAxis dataKey="name" stroke="#666" tick={{ fill: '#666', fontSize: 10 }} axisLine={false} tickLine={false} />
+                  <YAxis stroke="#666" tick={{ fill: '#666', fontSize: 10 }} axisLine={false} tickLine={false} />
+                  <Tooltip 
+                    cursor={{ fill: 'rgba(255,255,255,0.02)' }} 
+                    contentStyle={{ backgroundColor: '#0a0a0a', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '12px', fontSize: '12px' }} 
+                    itemStyle={{ color: '#fff', fontWeight: 'bold' }}
+                  />
+                  <Bar dataKey="value" fill="#3b82f6" radius={[6, 6, 0, 0]} barSize={40} />
+                </BarChart>
+              </ResponsiveContainer>
+            ) : (
+              <div className="h-full flex flex-col items-center justify-center text-white/30 text-xs font-bold uppercase tracking-widest gap-2 border border-dashed border-white/10 rounded-2xl">
+                <Activity className="w-8 h-8 opacity-40 text-brand" />
+                <span>No lead data recorded yet</span>
+              </div>
+            )}
           </div>
         </div>
 
@@ -144,28 +153,35 @@ export default function Dashboard() {
             <div className="w-2 h-2 rounded-full bg-brand"></div>
             <h3 className="text-xs font-bold text-white uppercase tracking-widest">Products by Category</h3>
           </div>
-          <div className="h-[300px] w-full">
-            <ResponsiveContainer width="100%" height="100%">
-              <PieChart>
-                <Pie 
-                  data={analytics.product_popularity} 
-                  cx="50%" cy="50%" 
-                  innerRadius={90} 
-                  outerRadius={130} 
-                  paddingAngle={5} 
-                  dataKey="value"
-                  stroke="none"
-                >
-                  {analytics.product_popularity.map((entry, index) => (
-                    <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-                  ))}
-                </Pie>
-                <Tooltip 
-                  contentStyle={{ backgroundColor: '#0a0a0a', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '12px', fontSize: '12px' }} 
-                  itemStyle={{ color: '#fff', fontWeight: 'bold' }}
-                />
-              </PieChart>
-            </ResponsiveContainer>
+          <div className="h-[300px] w-full min-h-[300px]">
+            {analytics.product_popularity && analytics.product_popularity.length > 0 ? (
+              <ResponsiveContainer width="100%" height="100%" minWidth={0} minHeight={300}>
+                <PieChart>
+                  <Pie 
+                    data={analytics.product_popularity} 
+                    cx="50%" cy="50%" 
+                    innerRadius={90} 
+                    outerRadius={130} 
+                    paddingAngle={5} 
+                    dataKey="value"
+                    stroke="none"
+                  >
+                    {analytics.product_popularity.map((entry, index) => (
+                      <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                    ))}
+                  </Pie>
+                  <Tooltip 
+                    contentStyle={{ backgroundColor: '#0a0a0a', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '12px', fontSize: '12px' }} 
+                    itemStyle={{ color: '#fff', fontWeight: 'bold' }}
+                  />
+                </PieChart>
+              </ResponsiveContainer>
+            ) : (
+              <div className="h-full flex flex-col items-center justify-center text-white/30 text-xs font-bold uppercase tracking-widest gap-2 border border-dashed border-white/10 rounded-2xl">
+                <Package className="w-8 h-8 opacity-40 text-brand" />
+                <span>No category data available</span>
+              </div>
+            )}
           </div>
         </div>
         

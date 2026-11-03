@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Outlet, Link, useNavigate, useLocation } from 'react-router-dom';
 import { LayoutDashboard, Package, Users, LogOut, Settings, Shield, Box, FileText, Search, Activity, Menu, X, BookOpen } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import ErrorBoundary from '../../components/ErrorBoundary';
 
 export default function AdminLayout() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -117,7 +118,9 @@ export default function AdminLayout() {
           <div className="absolute inset-0 bg-gradient-to-br from-brand/[0.02] via-transparent to-transparent pointer-events-none z-0"></div>
           
           <div className="p-4 md:p-8 lg:p-10 relative z-10 w-full max-w-[1600px] mx-auto min-h-full">
-            <Outlet />
+            <ErrorBoundary>
+              <Outlet />
+            </ErrorBoundary>
           </div>
         </main>
       </div>
